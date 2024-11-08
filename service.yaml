@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sales-app-service
+spec:
+  type: NodePort  # Use NodePort to expose the service on a specific port
+  ports:
+  - port: 8501       # The port the service listens on
+    targetPort: 8501  # The port the container listens on
+    nodePort: 30001   # The port to access the service from the outside
+  selector:
+    app: sales-app
