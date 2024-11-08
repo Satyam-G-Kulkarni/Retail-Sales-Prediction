@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sales-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sales-app
+  template:
+    metadata:
+      labels:
+        app: sales-app
+    spec:
+      containers:
+      - name: sales-app
+        image: sales_prediction_app:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8501
+        resources:
+          requests:
+            memory: "500Mi"   # Requested memory (about 10-15% of total physical memory)
+            cpu: "250m"        # Requested CPU (0.25 logical processors)
